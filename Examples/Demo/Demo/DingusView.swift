@@ -2,18 +2,25 @@ import MarkdownUI
 import SwiftUI
 
 struct DingusView: View {
-  @State private var markdown = """
-    ## Try GitHub Flavored Markdown
+  @State private var markdown = #"""
+    Here's some markdown text with LaTeX equations:
 
-    You can try **GitHub Flavored Markdown** here.  This dingus is powered
-    by [MarkdownUI](https://github.com/gonzalezreal/MarkdownUI), a native
-    Markdown renderer for SwiftUI.
+    ### Mathematical Expressions in Markdown
 
-    1. item one
-    1. item two
-       - sublist
-       - sublist
-    """
+    The quadratic formula solves $ax^2 + bx + c = 0$ and is given by:
+
+    $$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+
+    The Gaussian distribution probability density function:
+
+    $$f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$$
+
+    Euler's identity is one of the most beautiful equations in mathematics:
+
+    $$e^{i\pi} + 1 = 0$$
+
+    This combines five fundamental constants: $e$, $i$, $\pi$, $1$, and $0$.
+    """#
 
   var body: some View {
     DemoView {

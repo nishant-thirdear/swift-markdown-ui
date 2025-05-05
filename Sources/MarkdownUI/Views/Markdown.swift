@@ -213,9 +213,9 @@ public struct Markdown: View {
         TextStyleAttributesReader { attributes in
 //            BlockSequence(self.blocks)
             BlockListView(nodes: self.blocks)
-                .foregroundColor(attributes.foregroundColor)
-                .background(attributes.backgroundColor)
-                .modifier(ScaledFontSizeModifier(attributes.fontProperties?.size))
+//                .foregroundColor(attributes.foregroundColor)
+//                .background(attributes.backgroundColor)
+//                .modifier(ScaledFontSizeModifier(attributes.fontProperties?.size))
         }
         .textStyle(self.text)
         .environment(\.baseURL, self.baseURL)

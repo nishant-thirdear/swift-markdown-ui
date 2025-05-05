@@ -30,47 +30,47 @@ extension BlockNode: View {
 }
 
 // MARK: - BlockListView
-struct BlockListView: View {
-    private let nodeList: [BlockNodeModel]
-    
-    init(nodes: [BlockNode]) {
-        nodeList = nodes.enumerated().map {
-            BlockNodeModel(index: $0, node: $1)
-        }
-    }
-    
-    @Environment(\.multilineTextAlignment) private var textAlignment
-    @Environment(\.tightSpacingEnabled) private var tightSpacingEnabled
-    
-    @State private var blockMargins: [Int: BlockMargin] = [:]
-    
-    var body: some View {
-        VStack(alignment: self.textAlignment.alignment.horizontal, spacing: 0) {
-            ForEach(nodeList) { nodeModel in
-                EquatableView(content: BlockNodeView(model: nodeModel))
-                    .onPreferenceChange(BlockMarginsPreference.self) { value in
-                        self.blockMargins[nodeModel.hashValue] = value
-                    }
-                    .padding(.top, self.topPaddingLength(for: nodeModel) ?? 16)
-            }
-        }
-    }
-    
-    private func topPaddingLength(for nodeModel: BlockNodeModel) -> CGFloat? {
-        guard nodeModel.index > 0 else {
-            return 0
-        }
-        
-        let topSpacing = self.blockMargins[nodeModel.hashValue]?.top
-        let predecessor = self.nodeList[nodeModel.index - 1]
-        let predecessorBottomSpacing =
-        self.tightSpacingEnabled ? 0 : self.blockMargins[predecessor.hashValue]?.bottom
-        
-        return [topSpacing, predecessorBottomSpacing]
-            .compactMap { $0 }
-            .max()
-    }
-}
+//struct BlockListView: View {
+//    private let nodeList: [BlockNodeModel]
+//    
+//    init(nodes: [BlockNode]) {
+//        nodeList = nodes.enumerated().map {
+//            BlockNodeModel(index: $0, node: $1)
+//        }
+//    }
+//    
+//    @Environment(\.multilineTextAlignment) private var textAlignment
+//    @Environment(\.tightSpacingEnabled) private var tightSpacingEnabled
+//    
+//    @State private var blockMargins: [Int: BlockMargin] = [:]
+//    
+//    var body: some View {
+//        VStack(alignment: self.textAlignment.alignment.horizontal, spacing: 0) {
+//            ForEach(nodeList) { nodeModel in
+//                EquatableView(content: BlockNodeView(model: nodeModel))
+//                    .onPreferenceChange(BlockMarginsPreference.self) { value in
+//                        self.blockMargins[nodeModel.hashValue] = value
+//                    }
+//                    .padding(.top, self.topPaddingLength(for: nodeModel) ?? 16)
+//            }
+//        }
+//    }
+//    
+//    private func topPaddingLength(for nodeModel: BlockNodeModel) -> CGFloat? {
+//        guard nodeModel.index > 0 else {
+//            return 0
+//        }
+//        
+//        let topSpacing = self.blockMargins[nodeModel.hashValue]?.top
+//        let predecessor = self.nodeList[nodeModel.index - 1]
+//        let predecessorBottomSpacing =
+//        self.tightSpacingEnabled ? 0 : self.blockMargins[predecessor.hashValue]?.bottom
+//        
+//        return [topSpacing, predecessorBottomSpacing]
+//            .compactMap { $0 }
+//            .max()
+//    }
+//}
 
 // MARK: - General Block
 class BlockNodeModel: ObservableObject, Hashable, Identifiable {
